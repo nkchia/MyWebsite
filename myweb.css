@@ -23,29 +23,14 @@
   font-family: 'Major Mono Display', monospace;
 }
 
-.explanation {
-  background-color: #85754d;
-  color: white;
-  padding: 5%;
-}
-
-.explanation, #intro {
+#intro {
   font-family: 'Noto Serif TC', serif;
   font-size: 20px;
 }
 
-.explanation h1 {
-  margin-bottom: 2%;
-  text-decoration: underline;
-  font-size: 25px;
-}
-
-.explanation, header {
+header {
   text-align: left;
-}
-
-.transition {
-  -webkit-transition: opacity 1.5s;
+  font-size: 50px;
 }
 
 hr {
@@ -60,10 +45,6 @@ footer p {
   font-size: 20px;
 }
 
-header {
-  font-size: 50px;
-}
-
 header, footer {
   padding: 5%;
   background-color: #4b2e83;
@@ -71,38 +52,14 @@ header, footer {
   font-family: 'Aleo', serif;
 }
 
-.hidden {
-  opacity: 0.0;
-}
-
 #menu {
   justify-content: space-around;
   font-size: 25px;
   margin-bottom: 5%;
-}
-
-#menu p {
-  cursor: pointer;
-}
-
-#menu, .row {
   display: flex;
   flex-direction: row;
 }
 
-.row {
-  justify-content: space-between;
-  align-items: center;
-}
-
-.row img {
-  height: 200px;
-  width: 200px;
-  border-radius: 50%;
-  border: 3px solid white;
-  margin-left: 10%;
-}
-
-.visible {
-  opacity: 1.0;
+#menu p {
+  cursor: pointer;
 }
