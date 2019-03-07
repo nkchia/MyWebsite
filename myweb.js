@@ -4,7 +4,8 @@ let displayTimer;
 let phrases = ["Simplistic Style.",
     "Interested in NLP.",
     "Sophomore.",
-    "From Malaysia."];
+    "From Malaysia.",
+    "I LOVE YOU JESSICAAA!!"];
 
 (function() {
   window.onload = function() {
@@ -13,6 +14,7 @@ let phrases = ["Simplistic Style.",
 
   function setup() {
     waitDisplay();
+    assignButtons();
   }
 
   function waitDisplay() {
@@ -47,6 +49,29 @@ let phrases = ["Simplistic Style.",
       waitDisplay();
     } else {
       qs("#display p").innerHTML = targetPhrase.substring(0, changeLength + 1) + "|";
+    }
+  }
+
+  function assignButtons() {
+    $("projButton").addEventListener('click', function(){toggle('projSection');});
+    $("expButton").addEventListener('click', function(){toggle('expSection');});
+    $("skillButton").addEventListener('click', function(){toggle('skillSection');});
+    $("extButton").addEventListener('click', function(){toggle('extSection');});
+  }
+
+  function toggle(sectionId) {
+    let targetSection = $(sectionId);
+    let expanded = qs(".expanded");
+    if (targetSection.classList.contains("collapsed")) {
+      if (expanded != null) {
+        expanded.classList.remove("expanded");
+        expanded.classList.add("collapsed");
+      }
+      targetSection.classList.remove("collapsed");
+      targetSection.classList.add("expanded");
+    } else {
+      targetSection.classList.remove("expanded");
+      targetSection.classList.add("collapsed");
     }
   }
 

@@ -2,6 +2,17 @@
   margin: 0px;
 }
 
+.collapsed {
+  height: 0px;
+  opacity: 0;
+}
+
+.collapsed, .expanded {
+  overflow : hidden;
+  -webkit-transition: height 0.5s;
+  transition: height 0.5s;
+}
+
 #display {
   font-size: 45px;
   padding-top: 5%;
@@ -23,43 +34,86 @@
   font-family: 'Major Mono Display', monospace;
 }
 
-#intro {
+#intro, .expanded {
   font-family: 'Noto Serif TC', serif;
   font-size: 20px;
 }
 
-header {
-  text-align: left;
-  font-size: 50px;
+.expanded {
+    background-color: #85754d;
+    height: 200px;
+    color: white;
 }
 
-hr {
-  margin: 5%;
+.expanded div {
+  font-style: italic;
 }
 
-footer {
+.expanded div, footer {
   font-size: 35px;
+}
+
+.expanded, header {
+  text-align: left;
+}
+
+.expanded, header, footer {
+  padding: 5%;
+}
+
+#expButton {
+  margin-left: 30%;
+}
+
+#expButton, #extButton, #projButton, #skillButton {
+  cursor: pointer;
+  margin-bottom: 1%;
+  margin-top: 1%;
+}
+
+#expButton, #projButton {
+  text-align: left;
+}
+
+#extButton {
+  margin-right: 10%;
+  margin-bottom: 5%;
+}
+
+#extButton, #skillButton {
+  text-align: right;
 }
 
 footer p {
   font-size: 20px;
 }
 
+header {
+  font-size: 50px;
+}
+
 header, footer {
-  padding: 5%;
   background-color: #4b2e83;
   color: white;
   font-family: 'Aleo', serif;
 }
 
+hr {
+  margin: 5%;
+}
+
 #menu {
   justify-content: space-around;
   font-size: 25px;
-  margin-bottom: 5%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  text-align: left;
 }
 
-#menu p {
-  cursor: pointer;
+#projButton {
+  margin-left: 10%;
+}
+
+#skillButton {
+  margin-right: 35%;
 }
