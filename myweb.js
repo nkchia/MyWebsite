@@ -4,8 +4,7 @@ let displayTimer;
 let phrases = ["Simplistic Style.",
     "Interested in NLP.",
     "Sophomore.",
-    "From Malaysia.",
-    "I LOVE YOU JESSICAAA!!"];
+    "From Malaysia."];
 
 (function() {
   window.onload = function() {
