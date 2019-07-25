@@ -1,6 +1,10 @@
+// Ning Kang Chia
 "use strict";
 
+// Timer for text-changing title.
 let displayTimer;
+
+// All potential titles.
 let phrases = ["Simplistic Style.",
     "Interested in NLP.",
     "Junior.",
@@ -12,26 +16,28 @@ let phrases = ["Simplistic Style.",
     setup();
   };
 
+  // Start to cycle through the different titles
+  // and assign buttons to appropriate functions.
   function setup() {
     waitDisplay();
     assignButtons();
+
+    // Not yet implemented; see further below.
+    // getFields();
   }
 
+  // Keeps the title from changing.
   function waitDisplay() {
     displayTimer = setTimeout(reduceText, 3000);
   }
 
+  // Changes title
   function reduceText(){
     displayTimer = setInterval(reduceStep, 70);
   }
 
-  function increaseText(){
-    let index = Math.floor(Math.random() * phrases.length);
-    let targetPhrase = phrases[index];
-
-    displayTimer = setInterval(increaseStep, 70, targetPhrase);
-  }
-
+  // Removes a letter from the title. If the title has <= 1
+  // character, add letters to title instead.
   function reduceStep() {
     let changeLength = qs("#display p").innerHTML.length;
     if (changeLength <= 1) {
@@ -42,6 +48,15 @@ let phrases = ["Simplistic Style.",
     }
   }
 
+  // Chooses a random title and changes the title letter by letter
+  function increaseText(){
+    let index = Math.floor(Math.random() * phrases.length);
+    let targetPhrase = phrases[index];
+
+    displayTimer = setInterval(increaseStep, 70, targetPhrase);
+  }
+
+  // Takes in a string and changes the title letter by letter
   function increaseStep(targetPhrase) {
     let changeLength = qs("#display p").innerHTML.length - 1;
     if (targetPhrase.length == changeLength) {
@@ -52,6 +67,7 @@ let phrases = ["Simplistic Style.",
     }
   }
 
+  // Maps event listeners to specific buttons to expand specific sections.
   function assignButtons() {
     $("projButton").addEventListener('click', function(){toggle('projSection');});
     $("expButton").addEventListener('click', function(){toggle('expSection');});
@@ -59,6 +75,11 @@ let phrases = ["Simplistic Style.",
     $("extButton").addEventListener('click', function(){toggle('extSection');});
   }
 
+  // Takes in a string representing a specific section's id and
+  // 1. Expands the section if not expanded
+  // 2. Collapses the section if its the only section expanded
+  // 3. If another section is expanded, collapses that section
+  //    and expands the given section.
   function toggle(sectionId) {
     let targetSection = $(sectionId);
     let expanded = qs(".expanded");
@@ -75,6 +96,39 @@ let phrases = ["Simplistic Style.",
     }
   }
 
+  // Unfinished implementation of dynamically setting the
+  // contents in the sections through php.
+  // It is intended to create the DOM elements in real time
+  // based on information uploaded on server such as format
+  // style and content.
+  /*
+  function getFields() {
+    let url = "http://students.washington.edu/nkchia/myweb.php";
+    url += "?mode=setup";
+
+    fetch(url)
+      .then(checkStatus)
+      .then(function(responseText) {
+        let json = responseText.parse();
+
+        for (let i = 0; i < json.length; i++){
+          let toBeAdded = document.createElement("h2");
+          let toBeText = document.createTextNode(json[i]["trait"]);
+          toBeAdded.appendChild(toBeText);
+          document.querySelector("main").appendChild(toBeAdded);
+        }
+
+        let toBeAdded = document.createElement("h2");
+        let toBeText = document.createTextNode(responseText);
+        toBeAdded.appendChild(toBeText);
+        document.querySelector("main").appendChild(toBeAdded);
+      })
+      .catch(function(error) {
+
+      });
+    }
+  */
+
   //Helper Functions
   function $(id) {
     return document.getElementById(id);
@@ -86,5 +140,13 @@ let phrases = ["Simplistic Style.",
 
   function qsa(selector) {
     return document.querySelectorAll(selector);
+  }
+
+  function checkStatus(response){
+    if (response.status >= 200 && response.status < 300) {
+      return response.text();
+    } else {
+      return Promise.reject(new Error(response.status + ": " + response.statusText));
+    }
   }
 })();
