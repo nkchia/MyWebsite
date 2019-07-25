@@ -9,8 +9,10 @@
 
 .collapsed, .expanded {
   overflow : hidden;
+  /*
   -webkit-transition: height 0.5s;
   transition: height 0.5s;
+  */
 }
 
 #display {
@@ -36,7 +38,7 @@
 
 .expanded {
   background-color: #85754d;
-  /* height: 200px; Can css be dynamically calculated? */
+  /* height: 200px; */
 }
 
 .expanded, header, footer {
